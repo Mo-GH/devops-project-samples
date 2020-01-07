@@ -6,9 +6,11 @@
             "type": "String"
         },
         "hostingPlanName": {
+            "defaultValue": "workshop-java-webapp-plan-co",
             "type": "String"
         },
         "appInsightsLocation": {
+          
             "type": "String"
         },
         "sku": {
