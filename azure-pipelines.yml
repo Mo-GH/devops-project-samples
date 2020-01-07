@@ -23,3 +23,5 @@ steps:
     csmFileLink: 'https://raw.githubusercontent.com/Mo-GH/devops-project-samples/master/java/spring/container/ArmTemplates/containerRegistry-template.json'
     overrideParameters: '-registryName workshopcregistry'
     deploymentMode: 'Incremental'
+
+    
