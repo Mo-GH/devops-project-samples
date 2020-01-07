@@ -10,7 +10,7 @@
             "type": "String"
         },
         "appInsightsLocation": {
-          
+            "defaultValue": "West Europe",
             "type": "String"
         },
         "sku": {
@@ -24,7 +24,7 @@
             "type":"String"
         },
         "registryLocation": {
-             "defaultValue": "West Europe",
+            "defaultValue": "West Europe",
             "type": "String"
         },
         "registrySku": {
