@@ -6,6 +6,7 @@
             "type": "String"
         },
         "registryLocation": {
+            "defaultValue": "West Europe",
             "type": "String"
         },
         "registrySku": {
