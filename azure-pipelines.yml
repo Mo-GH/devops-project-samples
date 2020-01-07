@@ -24,17 +24,11 @@ steps:
     overrideParameters: '-registryName workshopcregistry'
     deploymentMode: 'Incremental'
 
-
-
-- task: Maven@3
+- task: Maven@1
+  displayName: 'Maven $(mavenPOMFile)'
   inputs:
-    mavenPomFile: 'https://raw.githubusercontent.com/Mo-GH/devops-project-samples/master/java/spring/container/Application/pom.xml'
+    mavenPomFile: java/spring/container/Application/pom.xml
     publishJUnitResults: false
-    javaHomeOption: 'JDKVersion'
-    mavenVersionOption: 'Default'
-    mavenAuthenticateFeed: false
-    effectivePomSkip: false
-    sonarQubeRunAnalysis: false
 
 - task: CopyFiles@2
   displayName: 'Copy File to: $(TargetFolder)'
@@ -43,22 +37,18 @@ steps:
     Contents: |
      **/*.war
      **/*jar-with-dependencies.jar
-     **/Dockerfile
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
     flattenFolders: true
 
 - task: PublishBuildArtifacts@1
-
   displayName: 'Publish Artifacts: drop'
 
-
-
 - task: Docker@2
+  displayName: buildAndPush
   inputs:
-    containerRegistry: 'dockerregister'
-    repository: 'image1'
-    command: 'buildAndPush'
-    Dockerfile: '**/Dockerfile'
+    containerRegistry: dockerregister
+    repository: '$(Build.Repository.Name)'
+
 
 
 
@@ -72,6 +62,6 @@ steps:
     location: 'West Europe'
     templateLocation: 'URL of the file'
     csmFileLink: 'https://raw.githubusercontent.com/Mo-GH/devops-project-samples/master/java/spring/container/ArmTemplates/container-webapp-template.json'
-    overrideParameters: '-webAppName workshop-java-webapp-co -hostingPlanName workshop-java-webapp-plan-co -appInsightsLocation West Europe -registryName workshopcregistry -imageName image1 -registryLocation West Europe'
+    overrideParameters: '-webAppName workshop-java-webapp-co -hostingPlanName workshop-java-webapp-plan-co -appInsightsLocation West Europe -registryName workshopcregistry -imageName $(Build.Repository.Name) -registryLocation West Europe'
     deploymentMode: 'Incremental'
 
