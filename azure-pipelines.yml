@@ -21,7 +21,7 @@ steps:
     location: 'West Europe'
     templateLocation: 'URL of the file'
     csmFileLink: 'https://raw.githubusercontent.com/Mo-GH/devops-project-samples/master/java/spring/container/ArmTemplates/containerRegistry-template.json'
-    overrideParameters: '-registryName workshopcregistry'
+    overrideParameters: '-registryName $(registername)'
     deploymentMode: 'Incremental'
 
 - task: Maven@1
@@ -62,6 +62,6 @@ steps:
     location: 'West Europe'
     templateLocation: 'URL of the file'
     csmFileLink: 'https://raw.githubusercontent.com/Mo-GH/devops-project-samples/master/java/spring/container/ArmTemplates/container-webapp-template.json'
-    overrideParameters: '-webAppName workshop-java-webapp-co -registryName workshopcregistry -imageName $(Build.Repository.Name)'
+    overrideParameters: '-webAppName workshop-java-webapp-co -registryName $(registername) -imageName $(Build.Repository.Name)'
     deploymentMode: 'Incremental'
 
