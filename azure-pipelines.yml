@@ -46,7 +46,7 @@ steps:
 - task: Docker@2
   inputs:
     containerRegistry: 'dockerregister'
-    repository: 'mo-gh/devops-project-samples'
+    repository: '$(Build.Repository.Name)'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
 
