@@ -62,6 +62,6 @@ steps:
     location: 'West Europe'
     templateLocation: 'URL of the file'
     csmFileLink: 'https://raw.githubusercontent.com/Mo-GH/devops-project-samples/master/java/spring/container/ArmTemplates/container-webapp-template.json'
-    overrideParameters: '-webAppName workshop-java-webapp-co, -hostingPlanName workshop-java-webapp-plan-co, -appInsightsLocation West Europe, -registryName workshopcregistry, -imageName $(Build.Repository.Name)'
+    overrideParameters: '-webAppName workshop-java-webapp-co -registryName workshopcregistry -imageName $(Build.Repository.Name)'
     deploymentMode: 'Incremental'
 
