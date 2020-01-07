@@ -23,6 +23,6 @@ steps:
     location: 'West Europe'
     templateLocation: 'URL of the file'
     csmFileLink: 'https://raw.githubusercontent.com/Mo-GH/devops-project-samples/master/java/spring/container/ArmTemplates/container-webapp-template.json'
-    overrideParameters: ''
+    overrideParameters: '-imageName $(Build.Repository.Name)'
     deploymentMode: 'Incremental'
 
