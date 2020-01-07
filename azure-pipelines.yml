@@ -11,7 +11,42 @@ pool:
 
 steps:
 
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+      azureResourceManagerConnection: 'Pay-As-You-Go (391a83b9-1ec3-4308-9d0e-773e5cfd392a)'
+      subscriptionId: '391a83b9-1ec3-4308-9d0e-773e5cfd392a'
+      action: 'Create Or Update Resource Group'
+      resourceGroupName: 'Workshop-RG-Co'
+      location: 'West Europe'
+      templateLocation: 'URL of the file'
+      csmFileLink: 'https://raw.githubusercontent.com/Mo-GH/devops-project-samples/master/java/spring/container/ArmTemplates/containerRegistry-template.json'
+      overrideParameters: '-registryName $(registername)'
+      deploymentMode: 'Incremental'
 
+- task: Maven@1
+  displayName: 'Maven $(mavenPOMFile)'
+  inputs:
+    mavenPomFile: java/spring/container/Application/pom.xml
+    publishJUnitResults: false
+
+- task: CopyFiles@2
+  displayName: 'Copy File to: $(TargetFolder)'
+  inputs:
+    SourceFolder: '$(Build.SourcesDirectory)'
+    Contents: |
+     **/*.war
+     **/*jar-with-dependencies.jar
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    flattenFolders: true
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifacts: drop'
+
+- task: Docker@2
+  displayName: buildAndPush
+  inputs:
+    containerRegistry: dockerregister
+    repository: '$(Build.Repository.Name)'
 
 - task: AzureResourceManagerTemplateDeployment@3
   inputs:
