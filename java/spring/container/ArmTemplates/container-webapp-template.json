@@ -23,7 +23,7 @@
             "type": "String"
         },
         "imageName": {
-             "defaultValue": "mo-gh/devops-project-samples",
+             "defaultValue": "pipelines-javascript-docker",
             "type":"String"
         },
         "registryLocation": {
