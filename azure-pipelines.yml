@@ -24,6 +24,14 @@ steps:
     overrideParameters: '-registryName workshopcregistry'
     deploymentMode: 'Incremental'
 
+- task: Docker@2
+  inputs:
+    containerRegistry: 'dockerregister'
+    repository: 'image1'
+    command: 'buildAndPush'
+    Dockerfile: 'https://raw.githubusercontent.com/Mo-GH/devops-project-samples/master/java/spring/container/Application/Dockerfile'
+
+
 
 - task: AzureResourceManagerTemplateDeployment@3
   inputs:
@@ -35,7 +43,7 @@ steps:
     location: 'West Europe'
     templateLocation: 'URL of the file'
     csmFileLink: 'https://raw.githubusercontent.com/Mo-GH/devops-project-samples/master/java/spring/container/ArmTemplates/container-webapp-template.json'
-    overrideParameters: '-webAppName workshop-java-webapp-co -hostingPlanName workshop-java-webapp-plan-co -appInsightsLocation West Europe -registryName workshopcregistry -imageName springimage -registryLocation West Europe'
+    overrideParameters: '-webAppName workshop-java-webapp-co -hostingPlanName workshop-java-webapp-plan-co -appInsightsLocation West Europe -registryName workshopcregistry -imageName image1 -registryLocation West Europe'
     deploymentMode: 'Incremental'
 
 - task: Maven@3
