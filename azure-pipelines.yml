@@ -1,0 +1,22 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+ - task: AzureResourceGroupDeployment@2
+   inputs:
+      azureSubscription: '$(subscription)'
+      action: 'Create Or Update Resource Group'
+      resourceGroupName: 'Workshop-RG-Co'
+      location: 'West Europe'
+      templateLocation: 'URL of the file'
+      csmFileLink: 'https://raw.githubusercontent.com/Mo-GH/devops-project-samples/master/java/spring/container/ArmTemplates/containerRegistry-template.json'
+      overrideParameters: '-registryName workshopcregistry'
+      deploymentMode: 'Incremental'
