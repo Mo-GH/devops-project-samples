@@ -38,9 +38,13 @@ steps:
     overrideParameters: '-webAppName workshop-java-webapp-co -hostingPlanName workshop-java-webapp-plan-co -appInsightsLocation West Europe -registryName workshopcregistry -imageName springimage -registryLocation West Europe'
     deploymentMode: 'Incremental'
 
-- task: AzureWebAppContainer@1
+- task: Maven@3
   inputs:
-    azureSubscription: 'Pay-As-You-Go (391a83b9-1ec3-4308-9d0e-773e5cfd392a)'
-    appName: 'workshop-java-webapp-co'
-    containers: 'springimage'
+    mavenPomFile: 'https://raw.githubusercontent.com/Mo-GH/devops-project-samples/master/java/spring/container/Application/pom.xml'
+    publishJUnitResults: false
+    javaHomeOption: 'JDKVersion'
+    mavenVersionOption: 'Default'
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false
+    sonarQubeRunAnalysis: false
 
