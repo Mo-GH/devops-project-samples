@@ -3,6 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "webAppName": {
+             "defaultValue": "workshop-java-webapp-co",
             "type": "String"
         },
         "hostingPlanName": {
@@ -18,9 +19,11 @@
             "type": "String"
         },
         "registryName": {
+            "defaultValue": "workshopcregistry",
             "type": "String"
         },
         "imageName": {
+             "defaultValue": "mo-gh/devops-project-samples",
             "type":"String"
         },
         "registryLocation": {
